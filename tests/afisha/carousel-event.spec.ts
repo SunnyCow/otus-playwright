@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 
-test('should open event page from main page carousel event image', async ({ page }) => {
+test('opens event page from main page carousel event image', async ({ page }) => {
   await page.goto('');
 
   const firstEvent = page.locator('.widget-popular-events .event-list__item-image').first();

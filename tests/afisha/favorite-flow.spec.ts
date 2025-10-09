@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 
-test('should add event to favourite', async ({ page }) => {
+test('adds event to favourite', async ({ page }) => {
   await page.goto('');
 
   const eventFavButton = page.locator('.event-list__item-link-favorite').first();

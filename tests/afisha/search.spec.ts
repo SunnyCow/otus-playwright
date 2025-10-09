@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 
-test('should find event from search box', async ({ page }) => {
+test('can find event from seach field', async ({ page }) => {
   await page.goto('', { waitUntil: 'domcontentloaded' });
 
   const titleElement= page.locator('.event-list__item-title > span').first();

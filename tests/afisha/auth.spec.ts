@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 
-test('should log in successfully', async ({ page }) => {
+test('log in', async ({ page }) => {
   await page.goto('', { waitUntil: 'domcontentloaded' });
   const userId = '14497131';
 
