@@ -4,7 +4,6 @@ test('can find event from search field', async ({ page }) => {
   await page.goto('', { waitUntil: 'domcontentloaded' });
 
   const titleElement= page.locator('.event-list__item-title > span').first();
-  await titleElement.waitFor({ state: 'visible' });
 
   const rawTitle = await titleElement.textContent();
 
