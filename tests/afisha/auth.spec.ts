@@ -22,5 +22,10 @@ test('should log in', async ({ page }) => {
   await farpostLoginPage.passwordInput.fill(password);
 
   await farpostLoginPage.passwordInput.press('Enter');
-  await expect(afishaMainPage.userProfileLink).toBeVisible();
+
+  if (afishaMainPage.userProfileLink) {
+    await expect(afishaMainPage.userProfileLink).toBeVisible();
+  } else {
+    throw new Error('User profile link is not visible!');
+  }
 });
