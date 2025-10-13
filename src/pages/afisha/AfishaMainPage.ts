@@ -6,9 +6,9 @@ export class AfishaMainPage extends BasePage {
   readonly headerFavButton: Locator;
   readonly loginButton: Locator;
   readonly secondaryLoginButton: Locator;
-  readonly userProfileLink: Locator;
+  readonly userProfileLink?: Locator;
 
-  constructor(page: Page, userId: string) {
+  constructor(page: Page, userId?: string) {
     super(page);
     this.eventFavButton = page.locator('.event-list__item-link-favorite').first();
     this.headerFavButton = page.locator('.favorite__list-link');
@@ -16,7 +16,10 @@ export class AfishaMainPage extends BasePage {
     // на странице два элемента, которые подходят под locator('#body').getByRole('link', { name: 'Войти' }), поэтому выбираем по классам
     this.loginButton = page.locator('.nav_personal__btn .nav_personal__text');
     this.secondaryLoginButton = page.locator('.nav_personal__auth-button');
-    this.userProfileLink = page.getByRole('link', { name: userId });
+
+    if (userId) {
+      this.userProfileLink = page.getByRole('link', { name: userId });
+    }
   }
 
   async clickEventFavButton(): Promise<void> {
