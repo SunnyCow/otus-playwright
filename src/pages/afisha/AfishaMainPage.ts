@@ -1,4 +1,4 @@
-import { Page, Locator } from '@playwright/test';
+import { Page, Locator, expect } from '@playwright/test';
 import { BasePage } from '../BasePage';
 
 export class AfishaMainPage extends BasePage {
@@ -27,6 +27,22 @@ export class AfishaMainPage extends BasePage {
   }
 
   async getFavCount(): Promise<number> {
-    return Number(await this.eventFavButton.getAttribute('data-content'));
+    return Number(await this.headerFavButton.getAttribute('data-content'));
+  }
+
+  async expectFavoriteAdded(): Promise<void> {
+    await expect(this.eventFavButton).toHaveClass(/\badded\b/);
+  }
+
+  async expectFavoriteRemoved(): Promise<void> {
+    await expect(this.eventFavButton).not.toHaveClass(/added/);
+  }
+
+  async expectFavCountIncrease(count: number): Promise<void> {
+    await expect(this.headerFavButton).toHaveAttribute('data-content', `${count + 1}`);
+  }
+
+  async expectFavCountToBe(count: number): Promise<void> {
+    await expect(this.headerFavButton).toHaveAttribute('data-content', `${count}`);
   }
 }
