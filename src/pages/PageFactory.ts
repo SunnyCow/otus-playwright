@@ -3,7 +3,7 @@ import { AfishaMainPage } from './afisha/AfishaMainPage';
 import { FarpostLoginPage } from './FarpostLoginPage';
 
 export class PageFactory {
-  static afishaMainPage(page: Page, userId: string): AfishaMainPage {
+  static afishaMainPage(page: Page, userId?: string): AfishaMainPage {
     return new AfishaMainPage(page, userId);
   }
 
