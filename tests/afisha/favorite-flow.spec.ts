@@ -1,20 +1,19 @@
 import { test, expect } from '@playwright/test';
+import { PageFactory } from '../../src/pages/PageFactory';
 
-test('adds event to favourite', async ({ page }) => {
-  await page.goto('');
+test('adds event to favorite', async ({ page }) => {
+  const afishaMainPage = PageFactory.afishaMainPage(page);
 
-  const eventFavButton = page.locator('.event-list__item-link-favorite').first();
-  const headerFavButton = page.locator('.favorite__list-link');
+  await afishaMainPage.open();
 
-  await eventFavButton.waitFor({ state: 'visible' });
-  await eventFavButton.evaluate(element => (element as HTMLElement).click());
-  await expect(eventFavButton).toHaveClass(/\badded\b/);
+  await afishaMainPage.clickEventFavButton();
+  await expect(afishaMainPage.eventFavButton).toHaveClass(/\badded\b/);
 
-  await headerFavButton.waitFor({ state: 'visible' });
-  const beforeFavCount = Number(await headerFavButton.getAttribute('data-content') ?? 0);
-  await expect(headerFavButton).toHaveAttribute('data-content', `${beforeFavCount + 1}`);
+  await afishaMainPage.headerFavButton.waitFor({ state: 'visible' });
+  const beforeFavCount = await afishaMainPage.getFavCount();
+  await expect(afishaMainPage.headerFavButton).toHaveAttribute('data-content', `${beforeFavCount + 1}`);
 
-  await eventFavButton.evaluate(element => (element as HTMLElement).click());
-  await expect(eventFavButton).not.toHaveClass(/added/);
-  await expect(headerFavButton).toHaveAttribute('data-content', `${beforeFavCount}`)
+  await afishaMainPage.clickEventFavButton();
+  await expect(afishaMainPage.eventFavButton).not.toHaveClass(/added/);
+  await expect(afishaMainPage.headerFavButton).toHaveAttribute('data-content', `${beforeFavCount}`)
 });
