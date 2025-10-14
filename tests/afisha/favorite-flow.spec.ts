@@ -2,16 +2,21 @@ import { test, expect } from '@playwright/test';
 import { PageFactory } from '../../src/pages/PageFactory';
 
 test.describe('Afisha favorites', () => {
-  test('adds event to favorite when user clicks the favorite icon', async ({ page }) => {
+  test('adds event to favorites', async ({ page }) => {
     const afishaMainPage = PageFactory.afishaMainPage(page);
-
     await afishaMainPage.open();
 
-    await afishaMainPage.clickEventFavButton();
-    await afishaMainPage.expectFavoriteAdded();
+    const beforeCount = await afishaMainPage.header.getFavCount();
 
-    const beforeFavCount = await afishaMainPage.getFavCount();
-    await afishaMainPage.expectFavCountIncrease(beforeFavCount);
+    await afishaMainPage.clickEventFavButton();
+
+    await expect(async () => {
+      const isAdded = await afishaMainPage.isFavoriteAdded();
+      const afterCount = await afishaMainPage.header.getFavCount();
+
+      expect(isAdded).toBe(true);
+      expect(afterCount).toBe(beforeCount + 1);
+    }).toPass();
   });
 
   test('removes event from favorite when user clicks the favorite icon again', async ({ page }) => {
@@ -20,13 +25,18 @@ test.describe('Afisha favorites', () => {
     await afishaMainPage.open();
 
     await afishaMainPage.clickEventFavButton();
-    await afishaMainPage.expectFavoriteAdded();
+    expect(await afishaMainPage.isFavoriteAdded()).toBe(true);
 
-    const beforeFavCount = await afishaMainPage.getFavCount();
-    await afishaMainPage.expectFavCountIncrease(beforeFavCount);
+    const beforeCount = await afishaMainPage.header.getFavCount();
 
     await afishaMainPage.clickEventFavButton();
-    await afishaMainPage.expectFavoriteRemoved();
-    await afishaMainPage.expectFavCountToBe(beforeFavCount);
+
+    await expect(async () => {
+      const isAdded = await afishaMainPage.isFavoriteAdded();
+      const afterCount = await afishaMainPage.header.getFavCount();
+
+      expect(isAdded).toBe(false);
+      expect(afterCount).toBe(beforeCount);
+    }).toPass();
   });
 });
