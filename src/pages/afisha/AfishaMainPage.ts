@@ -57,10 +57,8 @@ export class AfishaMainPage extends BasePage {
     return title.trim();
   }
 
-  async getCleanEventTitle(position: number = 0): Promise<string> {
-    const title = await this.getEventTitle(position);
-
-    return title
+  async getCleanEventTitle(dirtyTitle: string): Promise<string> {
+    return dirtyTitle
     .replace(/\..*$/, '')
     .replace(/[^a-zA-Z0-9А-Яа-яЁё\s]/g, '');
   }

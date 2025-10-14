@@ -8,7 +8,7 @@ test('finds event from the search field', async ({ page }) => {
   await afishaMainPage.open();
 
   const dirtyTitle = await afishaMainPage.getEventTitle();
-  const cleanTitle = await afishaMainPage.getCleanEventTitle();
+  const cleanTitle = await afishaMainPage.getCleanEventTitle(dirtyTitle);
 
   await afishaMainPage.searchFor(cleanTitle);
   await expect(searchResultPage.currentEvents).toContainText(dirtyTitle);
