@@ -1,13 +1,11 @@
 import { test, expect } from '@playwright/test';
+import { PageFactory } from '../../src/pages/PageFactory';
 
-test('hover opens context menu with cities', async ({ page }) => {
-  const dropDown = await page.locator('.dropdown-menu').nth(1);
-  await page.goto('');
+test('opens context menu with cities on hover', async ({ page }) => {
+  const afishaMainPage = PageFactory.afishaMainPage(page);
+  await afishaMainPage.open();
 
-  // локатор находит 3 элемента для разных разрешений, выбираем нужный нам
-  await page.locator('.header__project-city').nth(1).hover();
-  await expect(dropDown).toBeVisible();
-
-  const city = dropDown.locator(':scope > a').first();
-  await expect(city).toBeVisible();
+  await afishaMainPage.header.openCityDropdown();
+  await expect(afishaMainPage.header.dropdown).toBeVisible();
+  await expect(afishaMainPage.header.dropdownCity).toBeVisible();
 })
