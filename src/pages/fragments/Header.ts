@@ -30,4 +30,8 @@ export class Header {
     await this.searchInput.fill(query);
     await this.searchInput.press('Enter');
   }
+
+  async getFavCount(): Promise<number> {
+    return Number(await this.favButton.getAttribute('data-content'));
+  }
 }
