@@ -9,6 +9,7 @@ export class AfishaMainPage extends BasePage {
   readonly eventFavButton: Locator;
   readonly headerFavButton: Locator;
   readonly userProfileLink?: Locator;
+  readonly carouselEvent: Locator;
 
   constructor(page: Page) {
     super(page);
@@ -17,10 +18,15 @@ export class AfishaMainPage extends BasePage {
     this.eventFavButton = page.locator('.event-list__item-link-favorite').first();
     this.headerFavButton = page.locator('.favorite__list-link');
     this.eventTitle = page.locator('.event-list__item-title > span');
+    this.carouselEvent = page.locator('.widget-popular-events .event-list__item-image').first();
   }
 
   async clickEventFavButton(): Promise<void> {
     await this.eventFavButton.evaluate((el) => (el as HTMLElement).click());
+  }
+
+  async clickCarouselEvent(): Promise<void> {
+    await this.carouselEvent.evaluate(element => (element as HTMLElement).click());
   }
 
   async isFavoriteAdded(): Promise<boolean> {
