@@ -1,6 +1,7 @@
 import { Locator, Page } from '@playwright/test';
 
 export class Header {
+  readonly logo: Locator;
   readonly projectCity: Locator;
   readonly dropdown: Locator;
   readonly dropdownCity: Locator;
@@ -11,6 +12,7 @@ export class Header {
   readonly userProfile: Locator;
 
   constructor(page: Page) {
+    this.logo = page.getByRole('link', { name: 'VL.ru', exact: true });
     this.projectCity = page.locator('.header__project-city').nth(1);
     this.dropdown = page.locator('.dropdown-menu').nth(1);
     this.dropdownCity = this.dropdown.locator(':scope > a').first();
