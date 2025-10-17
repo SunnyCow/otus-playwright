@@ -2,10 +2,14 @@ import { test, expect } from '@playwright/test';
 import { PageFactory } from '../../src/pages/PageFactory';
 
 test.describe('Afisha favorites', () => {
-  test('adds event to favorites', async ({ page }) => {
-    const afishaMainPage = PageFactory.afishaMainPage(page);
-    await afishaMainPage.open();
+  let afishaMainPage: ReturnType<typeof PageFactory.afishaMainPage>;
 
+  test.beforeEach(async ({ page }) => {
+    afishaMainPage = PageFactory.afishaMainPage(page);
+    await afishaMainPage.open();
+  });
+
+  test('adds event to favorites', async () => {
     const beforeCount = await afishaMainPage.header.getFavCount();
 
     await afishaMainPage.clickEventFavButton();
@@ -19,11 +23,7 @@ test.describe('Afisha favorites', () => {
     }).toPass();
   });
 
-  test('removes event from favorite when user clicks the favorite icon again', async ({ page }) => {
-    const afishaMainPage = PageFactory.afishaMainPage(page);
-
-    await afishaMainPage.open();
-
+  test('removes event from favorite when user clicks the favorite icon again', async () => {
     await afishaMainPage.clickEventFavButton();
     expect(await afishaMainPage.isFavoriteAdded()).toBe(true);
 
