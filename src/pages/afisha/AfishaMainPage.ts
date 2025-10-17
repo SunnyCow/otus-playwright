@@ -4,19 +4,15 @@ import { Header } from '../fragments/Header';
 
 export class AfishaMainPage extends BasePage {
   readonly header: Header;
-  readonly projectCity: Locator;
   readonly eventTitle: Locator;
   readonly eventFavButton: Locator;
-  readonly headerFavButton: Locator;
   readonly userProfileLink?: Locator;
   readonly carouselEvent: Locator;
 
   constructor(page: Page) {
     super(page);
     this.header = new Header(page);
-    this.projectCity = page.locator('.header__project-city').nth(1);
     this.eventFavButton = page.locator('.event-list__item-link-favorite').first();
-    this.headerFavButton = page.locator('.favorite__list-link');
     this.eventTitle = page.locator('.event-list__item-title > span');
     this.carouselEvent = page.locator('.widget-popular-events .event-list__item-image').first();
   }
