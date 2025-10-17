@@ -1,8 +1,11 @@
 import { test, expect } from '@playwright/test';
+import { PageFactory } from '../../src/pages/PageFactory';
 
-test('logo click opens main vl.ru page', async ({ page }) => {
-  await page.goto('');
+test('opens main vl.ru page on logo click', async ({ page }) => {
+  const afishaMainPage = PageFactory.afishaMainPage(page);
+  await afishaMainPage.open();
 
-  await page.getByRole('link', { name: 'VL.ru', exact: true }).click();
+  await afishaMainPage.header.logo.click();
+
   expect(page).toHaveURL('https://www.vl.ru/');
 });
