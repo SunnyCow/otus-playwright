@@ -4,8 +4,8 @@ import { FarpostLoginPage } from './FarpostLoginPage';
 import { SearchResultPage } from './afisha/SearchResultPage';
 
 export class PageFactory {
-  static afishaMainPage(page: Page, userId?: string): AfishaMainPage {
-    return new AfishaMainPage(page, userId);
+  static afishaMainPage(page: Page): AfishaMainPage {
+    return new AfishaMainPage(page);
   }
 
   static farpostLoginPage(page: Page): FarpostLoginPage {
