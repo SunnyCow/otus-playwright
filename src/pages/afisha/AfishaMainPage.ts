@@ -17,7 +17,7 @@ export class AfishaMainPage extends BasePage {
     this.carouselEvent = page.locator('.widget-popular-events .event-list__item-image').first();
   }
 
-  async clickEventFavButton(): Promise<void> {
+  async markEventFav(): Promise<void> {
     await this.eventFavButton.evaluate((el) => (el as HTMLElement).click());
   }
 
@@ -25,7 +25,7 @@ export class AfishaMainPage extends BasePage {
     await this.carouselEvent.evaluate(element => (element as HTMLElement).click());
   }
 
-  async isFavoriteAdded(): Promise<boolean> {
+  async isFavoritted(): Promise<boolean> {
     const classAttr = await this.eventFavButton.getAttribute('class');
     return classAttr?.includes('added') ?? false;
   }
