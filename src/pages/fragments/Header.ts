@@ -1,4 +1,6 @@
 import { Locator, Page } from '@playwright/test';
+import { PageFactory } from '../PageFactory';
+import { type FarpostLoginPage } from '../FarpostLoginPage';
 
 export class Header {
   readonly logo: Locator;
@@ -11,7 +13,7 @@ export class Header {
   readonly secondaryLoginButton: Locator;
   readonly userProfile: Locator;
 
-  constructor(page: Page) {
+  constructor(private page: Page) {
     this.logo = page.getByRole('link', { name: 'VL.ru', exact: true });
     this.projectCity = page.locator('.header__project-city').nth(1);
     this.dropdown = page.locator('.dropdown-menu').nth(1);
@@ -35,5 +37,16 @@ export class Header {
 
   async getFavCount(): Promise<number> {
     return Number(await this.favButton.getAttribute('data-content'));
+  }
+
+  async navigateToLoginPage(): Promise<FarpostLoginPage> {
+    await this.loginButton.click();
+
+    // для некоторых юзеров при нажатии на кнопку логина открывается меню
+    if (await this.secondaryLoginButton.isVisible({ timeout: 3000 })) {
+      await this.secondaryLoginButton.click();
+    }
+
+    return PageFactory.farpostLoginPage(this.page);
   }
 }
