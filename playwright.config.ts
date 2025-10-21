@@ -35,35 +35,24 @@ export default defineConfig({
     trace: 'retain-on-failure',
   },
 
-  /* Configure projects for major browsers */
   projects: [
     {
-      name: 'AfishaVL',
-      testDir: './tests/afisha',
-      use: { ...devices['Desktop Chrome'],
-        baseURL: 'https://www.vl.ru/afisha/'
-       },
+      name: 'setup',
+      use: {
+        baseURL: 'https://www.vl.ru/afisha/',
+      },
+      testMatch: /.*\.setup\.ts/,
     },
-
-    /* Test against mobile viewports. */
-    // {
-    //   name: 'Mobile Chrome',
-    //   use: { ...devices['Pixel 5'] },
-    // },
-    // {
-    //   name: 'Mobile Safari',
-    //   use: { ...devices['iPhone 12'] },
-    // },
-
-    /* Test against branded browsers. */
-    // {
-    //   name: 'Microsoft Edge',
-    //   use: { ...devices['Desktop Edge'], channel: 'msedge' },
-    // },
-    // {
-    //   name: 'Google Chrome',
-    //   use: { ...devices['Desktop Chrome'], channel: 'chrome' },
-    // },
+    {
+      name: 'AfishaVLProd',
+      testDir: './tests/afisha',
+      use: {
+        ...devices['Desktop Chrome'],
+        baseURL: 'https://www.vl.ru/afisha/',
+        storageState: 'playwright/.auth/auth_cookie.json',
+       },
+       dependencies: ['setup'],
+    },
   ],
 
   /* Run your local dev server before starting the tests */
