@@ -21,7 +21,7 @@ export class AfishaMainPage extends BasePage {
     await this.eventFavButton.evaluate((el) => (el as HTMLElement).click());
   }
 
-  async clickCarouselEvent(): Promise<void> {
+  async openCarouselEvent(): Promise<void> {
     await this.carouselEvent.evaluate(element => (element as HTMLElement).click());
   }
 
