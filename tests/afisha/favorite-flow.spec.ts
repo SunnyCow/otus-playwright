@@ -12,10 +12,10 @@ test.describe('Afisha favorites', () => {
   test('adds event to favorites', async () => {
     const beforeCount = await afishaMainPage.header.getFavCount();
 
-    await afishaMainPage.clickEventFavButton();
+    await afishaMainPage.markEventFav();
 
     await expect(async () => {
-      const isAdded = await afishaMainPage.isFavoriteAdded();
+      const isAdded = await afishaMainPage.isFavoritted();
       const afterCount = await afishaMainPage.header.getFavCount();
 
       expect(isAdded).toBe(true);
@@ -24,15 +24,15 @@ test.describe('Afisha favorites', () => {
   });
 
   test('removes event from favorite when user clicks the favorite icon again', async () => {
-    await afishaMainPage.clickEventFavButton();
-    expect(await afishaMainPage.isFavoriteAdded()).toBe(true);
+    await afishaMainPage.markEventFav();
+    expect(await afishaMainPage.isFavoritted()).toBe(true);
 
     const beforeCount = await afishaMainPage.header.getFavCount();
 
-    await afishaMainPage.clickEventFavButton();
+    await afishaMainPage.markEventFav();
 
     await expect(async () => {
-      const isAdded = await afishaMainPage.isFavoriteAdded();
+      const isAdded = await afishaMainPage.isFavoritted();
       const afterCount = await afishaMainPage.header.getFavCount();
 
       expect(isAdded).toBe(false);
