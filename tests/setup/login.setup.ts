@@ -3,7 +3,7 @@ import { PageFactory } from '../../src/pages/PageFactory';
 import { saveAuthCookie, addAuthCookieIfValid } from '../../src/utils/authCookie';
 
 const authCookieFile = 'playwright/.auth/auth_cookie.json';
-const authCookieName = 'auth_token';
+const authCookieName = 'eauth';
 
 setup('setup authenticated state', async ({ context, page }) => {
   const valid = await addAuthCookieIfValid(context, authCookieFile);

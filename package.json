@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "Создано в рамках курса OTUS JavaScript QA Engineer",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "test:prod": "npx playwright test --project=*Prod"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/SunnyCow/otus-playwright.git"
