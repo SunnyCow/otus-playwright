@@ -3,9 +3,10 @@ import { PageFactory } from '../../src/pages/PageFactory';
 
 test('opens main vl.ru page on logo click', async ({ page }) => {
   const afishaMainPage = PageFactory.afishaMainPage(page);
+  const vlMainPage = PageFactory.vlMainPage();
   await afishaMainPage.open();
 
   await afishaMainPage.header.logo.click();
 
-  expect(page).toHaveURL('https://www.vl.ru/');
+  await expect(page).toHaveURL(vlMainPage.url);
 });

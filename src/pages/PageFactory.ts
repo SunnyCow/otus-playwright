@@ -2,6 +2,7 @@ import { type Page } from '@playwright/test';
 import { AfishaMainPage } from './afisha/AfishaMainPage';
 import { FarpostLoginPage } from './FarpostLoginPage';
 import { SearchResultPage } from './afisha/SearchResultPage';
+import { VLMainPage } from './VLMainPage';
 
 export class PageFactory {
   static afishaMainPage(page: Page): AfishaMainPage {
@@ -14,5 +15,9 @@ export class PageFactory {
 
   static searchResultPage(page: Page): SearchResultPage {
     return new SearchResultPage(page);
+  }
+
+  static vlMainPage(): VLMainPage {
+    return new VLMainPage();
   }
 }
