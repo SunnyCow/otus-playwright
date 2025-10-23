@@ -13,7 +13,7 @@ export class Header {
   readonly secondaryLoginButton: Locator;
   readonly userProfile: Locator;
 
-  constructor(private page: Page) {
+  constructor(readonly page: Page) {
     this.logo = page.getByRole('link', { name: 'VL.ru', exact: true });
     this.projectCity = page.locator('.header__project-city').nth(1);
     this.dropdown = page.locator('.dropdown-menu').nth(1);
