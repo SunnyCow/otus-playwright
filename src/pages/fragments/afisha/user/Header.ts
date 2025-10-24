@@ -1,6 +1,6 @@
 import { Locator, Page } from '@playwright/test';
-import { PageFactory } from '../PageFactory';
-import { type FarpostLoginPage } from '../FarpostLoginPage';
+import { PageFactory } from '../../../PageFactory';
+import { type FarpostLoginPage } from '../../../FarpostLoginPage';
 
 export class Header {
   readonly logo: Locator;
