@@ -4,14 +4,6 @@ import dotenv from 'dotenv';
 dotenv.config({quiet: true});
 
 /**
- * Read environment variables from file.
- * https://github.com/motdotla/dotenv
- */
-// import dotenv from 'dotenv';
-// import path from 'path';
-// dotenv.config({ path: path.resolve(__dirname, '.env') });
-
-/**
  * See https://playwright.dev/docs/test-configuration.
  */
 export default defineConfig({
@@ -37,13 +29,6 @@ export default defineConfig({
 
   projects: [
     {
-      name: 'setup',
-      use: {
-        baseURL: 'https://www.vl.ru/afisha/',
-      },
-      testMatch: /.*\.setup\.ts/,
-    },
-    {
       name: 'AfishaVLProd',
       testDir: './tests/afisha',
       use: {
@@ -51,7 +36,6 @@ export default defineConfig({
         baseURL: 'https://www.vl.ru/afisha/',
         storageState: 'playwright/.auth/auth_cookie.json',
        },
-       dependencies: ['setup'],
     },
   ],
 

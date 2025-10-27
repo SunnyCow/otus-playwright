@@ -1,7 +1,7 @@
 import { test as base, type Page } from '@playwright/test';
 import { ensureAuthenticated } from '../src/utils/authSetup';
 
-type Fixtures = {
+interface Fixtures {
   userPage: Page;
   adminPage: Page;
 };

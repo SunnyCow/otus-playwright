@@ -2,7 +2,7 @@ import { expect, type Page, type BrowserContext } from '@playwright/test';
 import { PageFactory } from '../pages/PageFactory';
 import { addAuthCookieIfValid, saveAuthCookie } from './authCookie';
 
-export interface AuthOptions {
+interface AuthOptions {
   role: 'user' | 'admin';
 }
 
