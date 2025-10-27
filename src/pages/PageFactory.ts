@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-extraneous-class */
 import { type Page } from '@playwright/test';
 import { AfishaMainPage } from './afisha/AfishaMainPage';
 import { FarpostLoginPage } from './FarpostLoginPage';
