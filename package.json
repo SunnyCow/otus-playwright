@@ -4,6 +4,7 @@
   "description": "Создано в рамках курса OTUS JavaScript QA Engineer",
   "main": "index.js",
   "scripts": {
+    "type-check": "tsc --noEmit",
     "test:prod": "npx playwright test --project=*Prod"
   },
   "repository": {
@@ -20,6 +21,7 @@
   "devDependencies": {
     "@playwright/test": "^1.56.0",
     "@types/node": "^24.7.0",
-    "dotenv": "^17.2.3"
+    "dotenv": "^17.2.3",
+    "typescript": "^5.9.3"
   }
 }
