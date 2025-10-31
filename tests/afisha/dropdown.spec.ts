@@ -8,4 +8,4 @@ test('opens context menu with cities on hover', async ({ page }) => {
   await afishaMainPage.header.openCityDropdown();
   await expect(afishaMainPage.header.dropdown).toBeVisible();
   await expect(afishaMainPage.header.dropdownCity).toBeVisible();
-})
+});
