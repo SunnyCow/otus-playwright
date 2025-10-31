@@ -14,7 +14,7 @@ export class AfishaMainPage extends BasePage {
     this.header = new Header(page);
     this.eventFavButton = page.locator('.event-list__item-link-favorite').first();
     this.eventTitle = page.locator('.event-list__item-title > span');
-    this.carouselEvent = page.locator('.widget-popular-events .event-list__item-image').first();
+    this.carouselEvent = page.locator('.event-list__item-image').first();
   }
 
   async markEventFav(): Promise<void> {
@@ -22,7 +22,7 @@ export class AfishaMainPage extends BasePage {
   }
 
   async openCarouselEvent(): Promise<void> {
-    await this.carouselEvent.evaluate(element => (element as HTMLElement).click());
+    await this.carouselEvent.evaluate((element) => (element as HTMLElement).click());
   }
 
   async isFavoritted(): Promise<boolean> {
@@ -30,7 +30,7 @@ export class AfishaMainPage extends BasePage {
     return classAttr?.includes('added') ?? false;
   }
 
-  async getEventTitle(position: number = 0): Promise<string> {
+  async getEventTitle(position = 0): Promise<string> {
     const title = await this.eventTitle.nth(position).textContent();
 
     if (!title) {
@@ -40,9 +40,7 @@ export class AfishaMainPage extends BasePage {
     return title.trim();
   }
 
-  async getCleanEventTitle(dirtyTitle: string): Promise<string> {
-    return dirtyTitle
-    .replace(/\..*$/, '')
-    .replace(/[^a-zA-Z0-9А-Яа-яЁё\s]/g, '');
+  cleanEventTitle(dirtyTitle: string): string {
+    return dirtyTitle.replace(/\..*$/, '').replace(/[^a-zA-Z0-9А-Яа-яЁё\s]/g, '');
   }
 }

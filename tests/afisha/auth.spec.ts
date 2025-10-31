@@ -6,7 +6,7 @@ test('logs in with valid credentials', async ({ page }) => {
   const password = process.env['TEST_PASS'];
 
   if (!username || !password) {
-    throw new Error('Environment variables for username or password are not found!')
+    throw new Error('Environment variables for username or password are not found!');
   }
 
   const afishaMainPage = PageFactory.afishaMainPage(page);
@@ -16,5 +16,5 @@ test('logs in with valid credentials', async ({ page }) => {
   const farpostLoginPage = await afishaMainPage.header.navigateToLoginPage();
   await farpostLoginPage.login(username, password);
 
-  await expect(afishaMainPage.header.userProfile).not.toHaveText("Войти");
+  await expect(afishaMainPage.header.userProfile).not.toHaveText('Войти');
 });

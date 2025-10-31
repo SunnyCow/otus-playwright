@@ -2,11 +2,17 @@ import fs from 'fs';
 import path from 'path';
 import { Page, BrowserContext, Cookie } from '@playwright/test';
 
-const ensureDir = (filePath: string) => fs.mkdirSync(path.dirname(filePath), { recursive: true });
+const ensureDir = (filePath: string): void => {
+  fs.mkdirSync(path.dirname(filePath), { recursive: true });
+};
 
-export async function saveAuthCookie(page: Page, cookieName: string, filePath: string) {
+export async function saveAuthCookie(
+  page: Page,
+  cookieName: string,
+  filePath: string,
+): Promise<void> {
   const cookies = await page.context().cookies();
-  const cookie = cookies.find(c => c.name === cookieName);
+  const cookie = cookies.find((c) => c.name === cookieName);
 
   if (!cookie) throw new Error(`Cookie "${cookieName}" not found after login.`);
 
@@ -19,7 +25,10 @@ export function loadAuthCookieSync(filePath: string): Cookie | null {
   return JSON.parse(fs.readFileSync(filePath, 'utf-8')) as Cookie;
 }
 
-export async function addAuthCookieIfValid(context: BrowserContext, filePath: string): Promise<boolean> {
+export async function addAuthCookieIfValid(
+  context: BrowserContext,
+  filePath: string,
+): Promise<boolean> {
   const cookie = loadAuthCookieSync(filePath);
   if (!cookie) return false;
 

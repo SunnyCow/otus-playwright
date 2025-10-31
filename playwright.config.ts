@@ -1,7 +1,7 @@
 import { defineConfig, devices } from '@playwright/test';
 import dotenv from 'dotenv';
 
-dotenv.config({quiet: true});
+dotenv.config({ quiet: true });
 
 /**
  * See https://playwright.dev/docs/test-configuration.
@@ -34,8 +34,7 @@ export default defineConfig({
       use: {
         ...devices['Desktop Chrome'],
         baseURL: 'https://www.vl.ru/afisha/',
-        storageState: 'playwright/.auth/auth_cookie.json',
-       },
+      },
     },
   ],
 
