@@ -4,7 +4,7 @@ import { ensureAuthenticated } from '../src/utils/authSetup';
 interface Fixtures {
   userPage: Page;
   adminPage: Page;
-};
+}
 
 export const test = base.extend<Fixtures>({
   userPage: async ({ browser }, use) => {
