@@ -1,6 +1,7 @@
-import { Locator, Page } from '@playwright/test';
+import { type Locator, type Page } from '@playwright/test';
 import { PageFactory } from '../../../PageFactory';
 import { type FarpostLoginPage } from '../../../FarpostLoginPage';
+import { type EventCreationPage } from '../../../afisha/EventCreationPage';
 
 export class Header {
   readonly logo: Locator;
@@ -9,6 +10,7 @@ export class Header {
   readonly dropdownCity: Locator;
   readonly searchInput: Locator;
   readonly favButton: Locator;
+  readonly addEventButton: Locator;
   readonly loginButton: Locator;
   readonly secondaryLoginButton: Locator;
   readonly userProfile: Locator;
@@ -20,6 +22,7 @@ export class Header {
     this.dropdownCity = this.dropdown.locator(':scope > a').first();
     this.searchInput = page.getByRole('textbox', { name: 'Поиск' });
     this.favButton = page.locator('.favorite__list-link');
+    this.addEventButton = page.getByRole('link', { name: 'Добавить событие' });
     this.loginButton = page.locator('.nav_personal__btn .nav_personal__text');
     this.secondaryLoginButton = page.locator('.nav_personal__auth-button');
     this.userProfile = page.locator('.nav_personal__text');
@@ -48,5 +51,11 @@ export class Header {
     }
 
     return PageFactory.farpostLoginPage(this.page);
+  }
+
+  async navigateToEventCreationPage(): Promise<EventCreationPage> {
+    await this.addEventButton.click();
+
+    return PageFactory.eventCreationPage(this.page);
   }
 }
