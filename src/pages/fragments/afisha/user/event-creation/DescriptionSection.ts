@@ -1,4 +1,4 @@
-import { Page, Locator } from '@playwright/test';
+import { type Page, type Locator } from '@playwright/test';
 
 export class DescriptionSection {
   readonly editor: Locator;
