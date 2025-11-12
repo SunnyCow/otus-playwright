@@ -3,6 +3,7 @@ import { AfishaMainPage } from './afisha/AfishaMainPage';
 import { FarpostLoginPage } from './FarpostLoginPage';
 import { SearchResultPage } from './afisha/SearchResultPage';
 import { VLMainPage } from './VLMainPage';
+import { EventCreationPage } from './afisha/EventCreationPage';
 
 export class PageFactory {
   static afishaMainPage(page: Page): AfishaMainPage {
@@ -19,5 +20,9 @@ export class PageFactory {
 
   static vlMainPage(): VLMainPage {
     return new VLMainPage();
+  }
+
+  static eventCreationPage(page: Page): EventCreationPage {
+    return new EventCreationPage(page);
   }
 }
