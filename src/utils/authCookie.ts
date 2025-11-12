@@ -1,6 +1,6 @@
 import fs from 'fs';
 import path from 'path';
-import { Page, BrowserContext, Cookie } from '@playwright/test';
+import { type Page, type BrowserContext, type Cookie } from '@playwright/test';
 
 const ensureDir = (filePath: string): void => {
   fs.mkdirSync(path.dirname(filePath), { recursive: true });

@@ -1,4 +1,4 @@
-import { Page, Locator } from '@playwright/test';
+import { type Page, type Locator } from '@playwright/test';
 import { BasePage } from '../BasePage';
 import { Header } from '../fragments/afisha/user/Header';
 
