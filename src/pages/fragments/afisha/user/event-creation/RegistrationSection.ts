@@ -1,6 +1,6 @@
 import { type Locator } from '@playwright/test';
 
-export class RegistratoinSection {
+export class RegistrationSection {
   public readonly freeCheckbox: Locator;
   readonly priceFromInput: Locator;
   readonly priceToInput: Locator;

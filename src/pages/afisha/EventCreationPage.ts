@@ -4,7 +4,7 @@ import { TitleSection } from '../fragments/afisha/user/event-creation/TitleSecti
 import { PosterSection } from '../fragments/afisha/user/event-creation/PosterSection';
 import { DescriptionSection } from '../fragments/afisha/user/event-creation/DescriptionSection';
 import { EventContactsSection } from '../fragments/afisha/user/event-creation/EventContactsSection';
-import { RegistratoinSection } from '../fragments/afisha/user/event-creation/RegistrationSection';
+import { RegistrationSection } from '../fragments/afisha/user/event-creation/RegistrationSection';
 import { PriceSection } from '../fragments/afisha/user/event-creation/PriceSection';
 import { SchedulesSection } from '../fragments/afisha/user/event-creation/SchedulesSection';
 import { OrgContactsSection } from '../fragments/afisha/user/event-creation/OrgContactsSection';
@@ -24,7 +24,7 @@ export class EventCreationPage extends BasePage {
   public readonly posterSection: PosterSection ;
   public readonly descriptionSection: DescriptionSection;
   public readonly eventContactsSection: EventContactsSection;
-  public readonly registrationSection: RegistratoinSection;
+  public readonly registrationSection: RegistrationSection;
   public readonly priceSection: PriceSection;
   public readonly schedulesSection: SchedulesSection;
   public readonly orgContactsSection: OrgContactsSection;
@@ -41,13 +41,13 @@ export class EventCreationPage extends BasePage {
     this.registrationCard = page.locator('#checkinRule');
     this.orgContactsCard = page.locator('mat-card', { hasText: 'Возможно, модераторам понадобится связаться с вами' });
     this.publishButton = page.getByRole('button', { name: 'Отправить на модерацию' });
-    this.titleSection = new TitleSection(page);
-    this.posterSection = new PosterSection(page);
-    this.descriptionSection = new DescriptionSection(page);
-    this.registrationSection = new RegistratoinSection(this.registrationCard);
-    this.priceSection = new PriceSection(page);
-    this.schedulesSection = new SchedulesSection(page);
-    this.orgContactsSection = new OrgContactsSection(page);
+    this.titleSection = new TitleSection(this.titleCard, page);
+    this.posterSection = new PosterSection(this.posterCard);
+    this.descriptionSection = new DescriptionSection(this.descriptionCard);
+    this.registrationSection = new RegistrationSection(this.registrationCard);
+    this.priceSection = new PriceSection(this.priceCard);
+    this.schedulesSection = new SchedulesSection(this.schedulesCard, page);
+    this.orgContactsSection = new OrgContactsSection(this.orgContactsCard);
     this.eventContactsSection = new EventContactsSection(this.contactsCard);
   }
 
@@ -58,5 +58,15 @@ export class EventCreationPage extends BasePage {
   async selectAgeLimit(): Promise<void> {
     await this.ageLimitSelect.click();
     await this.page.getByRole('option', { name: '18+' }).click();
+  }
+
+  async fillAllRequiredFields(): Promise<void> {
+    await this.titleSection.fillTitle();
+    await this.titleSection.selectCategory();
+    await this.posterSection.uploadPoster('test-data/images/valid.jpg');
+    await this.descriptionSection.fillDescription();
+    await this.selectAgeLimit();
+    await this.schedulesSection.fillFirstSchedule();
+    await this.orgContactsSection.fillOrgContacts();
   }
 }

@@ -5,14 +5,14 @@ export class TitleSection {
   readonly citySelect: Locator;
   readonly categorySelect: Locator;
 
-  constructor(readonly page: Page) {
-    this.titleInput = page.getByLabel('Название');
-    this.citySelect = page.getByLabel('Город');
-    this.categorySelect = page.getByLabel('Категория');
+  constructor(component: Locator, private readonly page: Page) {
+    this.titleInput = component.getByLabel('Название');
+    this.citySelect = component.getByLabel('Город');
+    this.categorySelect = component.getByLabel('Категория');
   }
 
-  async fillTitle(value: string): Promise<void> {
-    await this.titleInput.fill(value);
+  async fillTitle(title = `Test Event - ${Date.now()}`): Promise<void> {
+    await this.titleInput.fill(title);
   }
 
   async selectCity(city: string): Promise<void> {

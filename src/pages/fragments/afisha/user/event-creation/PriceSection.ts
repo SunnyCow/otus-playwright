@@ -1,16 +1,15 @@
-import { type Page, type Locator } from '@playwright/test';
+import { type Locator } from '@playwright/test';
 
 export class PriceSection {
-
   readonly freeCheckbox: Locator;
   readonly priceFromInput: Locator;
   readonly priceToInput: Locator;
   readonly priceCommentInput: Locator;
 
-  constructor(page: Page) {
-    this.freeCheckbox = page.getByLabel('Бесплатно');
-    this.priceFromInput = page.getByLabel('от');
-    this.priceToInput = page.getByLabel('до');
-    this.priceCommentInput = page.getByLabel('Комментарий');
+  constructor(component: Locator) {
+    this.freeCheckbox = component.getByLabel('Бесплатно');
+    this.priceFromInput = component.getByLabel('от');
+    this.priceToInput = component.getByLabel('до');
+    this.priceCommentInput = component.getByLabel('Комментарий');
   }
 }

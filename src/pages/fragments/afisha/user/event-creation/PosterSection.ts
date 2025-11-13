@@ -1,4 +1,4 @@
-import { type Page, type Locator } from '@playwright/test';
+import { type Locator } from '@playwright/test';
 
 export class PosterSection {
   readonly uploadInput: Locator;
@@ -6,11 +6,11 @@ export class PosterSection {
   readonly removeButton: Locator;
   readonly changeButton: Locator;
 
-  constructor(readonly page: Page) {
-    this.uploadInput = page.locator('input[type="file"][hidden]');
-    this.previewImage = page.locator('img.preview');
-    this.removeButton = page.getByRole('button', { name: 'Удалить' });
-    this.changeButton = page.getByRole('button', { name: 'Изменить' });
+  constructor(component: Locator) {
+    this.uploadInput = component.locator('input[type="file"][hidden]');
+    this.previewImage = component.locator('img.preview');
+    this.removeButton = component.getByRole('button', { name: 'Удалить' });
+    this.changeButton = component.getByRole('button', { name: 'Изменить' });
   }
 
   async uploadPoster(filePath: string): Promise<void> {
