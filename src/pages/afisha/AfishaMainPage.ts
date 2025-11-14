@@ -22,7 +22,7 @@ export class AfishaMainPage extends BasePage {
   }
 
   async openCarouselEvent(): Promise<void> {
-    await this.carouselEvent.evaluate((element) => (element as HTMLElement).click());
+    await this.carouselEvent.evaluate((el) => (el as HTMLElement).click());
   }
 
   async isFavoritted(): Promise<boolean> {
