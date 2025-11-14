@@ -1,10 +1,12 @@
 import { type Locator } from '@playwright/test';
 
 export class DescriptionSection {
-  readonly editor: Locator;
+  private readonly editor: Locator;
 
   constructor(component: Locator) {
-    this.editor = component.frameLocator('iframe[title="Поле форматированного текста"]').locator('#tinymce');
+    this.editor = component
+      .frameLocator('iframe[title="Поле форматированного текста"]')
+      .locator('#tinymce');
   }
 
   async fillDescription(text = 'Lorem ipsum dolor sit amet'): Promise<void> {

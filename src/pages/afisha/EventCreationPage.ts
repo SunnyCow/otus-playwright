@@ -21,7 +21,7 @@ export class EventCreationPage extends BasePage {
   public readonly orgContactsCard: Locator;
   public readonly publishButton: Locator;
   public readonly titleSection: TitleSection;
-  public readonly posterSection: PosterSection ;
+  public readonly posterSection: PosterSection;
   public readonly descriptionSection: DescriptionSection;
   public readonly eventContactsSection: EventContactsSection;
   public readonly registrationSection: RegistrationSection;
@@ -39,7 +39,9 @@ export class EventCreationPage extends BasePage {
     this.ageLimitSelect = page.getByLabel(/Возрастное ограничение/);
     this.schedulesCard = page.locator('#schedules');
     this.registrationCard = page.locator('#checkinRule');
-    this.orgContactsCard = page.locator('mat-card', { hasText: 'Возможно, модераторам понадобится связаться с вами' });
+    this.orgContactsCard = page.locator('mat-card', {
+      hasText: 'Возможно, модераторам понадобится связаться с вами',
+    });
     this.publishButton = page.getByRole('button', { name: 'Отправить на модерацию' });
     this.titleSection = new TitleSection(this.titleCard, page);
     this.posterSection = new PosterSection(this.posterCard);
@@ -67,6 +69,6 @@ export class EventCreationPage extends BasePage {
     await this.descriptionSection.fillDescription();
     await this.selectAgeLimit();
     await this.schedulesSection.fillFirstSchedule();
-    await this.orgContactsSection.fillOrgContacts();
+    await this.orgContactsSection.fillOrgEmail();
   }
 }

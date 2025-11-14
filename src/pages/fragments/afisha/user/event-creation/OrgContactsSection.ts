@@ -1,15 +1,21 @@
-import { type Locator} from '@playwright/test';
+import { type Locator } from '@playwright/test';
 
 export class OrgContactsSection {
-  readonly emailInput: Locator;
-  readonly contactsInput: Locator;
+  private readonly emailInput: Locator;
+  private readonly contactsInput: Locator;
 
   constructor(component: Locator) {
     this.emailInput = component.getByLabel('Email');
     this.contactsInput = component.getByLabel('Дополнительные контакты');
   }
 
-  async fillOrgContacts(email = 'sannikov_yao@farpost.com'): Promise<void> {
+  async fillOrgEmail(email = 'sannikov_yao@farpost.com'): Promise<void> {
+    await this.emailInput.click();
     await this.emailInput.fill(email);
+  }
+
+  async fillOrgContacts(email = 'sannikov_yao@farpost.com'): Promise<void> {
+    await this.contactsInput.click();
+    await this.contactsInput.fill(email);
   }
 }

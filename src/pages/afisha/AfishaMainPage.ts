@@ -3,11 +3,11 @@ import { BasePage } from '../BasePage';
 import { Header } from '../fragments/afisha/user/Header';
 
 export class AfishaMainPage extends BasePage {
-  readonly header: Header;
-  readonly eventTitle: Locator;
-  readonly eventFavButton: Locator;
-  readonly userProfileLink?: Locator;
-  readonly carouselEvent: Locator;
+  private readonly eventTitle: Locator;
+  private readonly eventFavButton: Locator;
+  private readonly carouselEvent: Locator;
+  public readonly header: Header;
+  public readonly userProfileLink?: Locator;
 
   constructor(page: Page) {
     super(page);

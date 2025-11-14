@@ -5,7 +5,10 @@ export class TitleSection {
   readonly citySelect: Locator;
   readonly categorySelect: Locator;
 
-  constructor(component: Locator, private readonly page: Page) {
+  constructor(
+    component: Locator,
+    private readonly page: Page,
+  ) {
     this.titleInput = component.getByLabel('Название');
     this.citySelect = component.getByLabel('Город');
     this.categorySelect = component.getByLabel('Категория');

@@ -7,7 +7,10 @@ export class SchedulesSection {
   readonly timeSelect: Locator;
   readonly addMoreSchedulesButton: Locator;
 
-  constructor(component: Locator, private readonly page: Page) {
+  constructor(
+    component: Locator,
+    private readonly page: Page,
+  ) {
     this.venueInput = component.getByLabel('Место проведения');
     this.addressInput = component.getByLabel('Адрес');
     this.dateInput = component.getByLabel('Дата');

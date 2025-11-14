@@ -1,7 +1,7 @@
 import { type Page, type Locator } from '@playwright/test';
 
 export class SearchResultPage {
-  readonly currentEvents: Locator;
+  public readonly currentEvents: Locator;
 
   constructor(page: Page) {
     this.currentEvents = page.locator(
