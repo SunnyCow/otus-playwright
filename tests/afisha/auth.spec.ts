@@ -1,13 +1,9 @@
 import { test, expect } from '@playwright/test';
 import { PageFactory } from '../../src/pages/PageFactory';
+import { getCredentials } from '../../config/auth.config';
 
 test('logs in with valid credentials', async ({ page }) => {
-  const username = process.env['TEST_USER'];
-  const password = process.env['TEST_PASS'];
-
-  if (!username || !password) {
-    throw new Error('Environment variables for username or password are not found!');
-  }
+  const { username, password } = getCredentials('regular');
 
   const afishaMainPage = PageFactory.afishaMainPage(page);
 
