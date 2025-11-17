@@ -4,10 +4,14 @@ import { FarpostLoginPage } from './FarpostLoginPage';
 import { SearchResultPage } from './afisha/SearchResultPage';
 import { VLMainPage } from './VLMainPage';
 import { EventCreationPage } from './afisha/EventCreationPage';
+import { KinoMainPage } from './kino/KinoMainPage';
 
 export class PageFactory {
   static afishaMainPage(page: Page): AfishaMainPage {
     return new AfishaMainPage(page);
+  }
+  static kinoMainPage(page: Page): KinoMainPage {
+    return new KinoMainPage(page);
   }
 
   static farpostLoginPage(page: Page): FarpostLoginPage {
