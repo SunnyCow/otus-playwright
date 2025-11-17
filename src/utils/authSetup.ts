@@ -1,6 +1,7 @@
 import { expect, type Page, type BrowserContext } from '@playwright/test';
 import { PageFactory } from '../pages/PageFactory';
 import { addAuthCookieIfValid, saveAuthCookie } from './authCookie';
+import { getCredentials } from '../../config/auth.config';
 
 interface AuthOptions {
   role: 'user' | 'admin';
@@ -19,12 +20,8 @@ export async function ensureAuthenticated(
     return;
   }
 
-  const username = role === 'admin' ? process.env['ADMIN_USER'] : process.env['TEST_USER'];
-  const password = role === 'admin' ? process.env['ADMIN_PASS'] : process.env['TEST_PASS'];
-
-  if (!username || !password) {
-    throw new Error(`Missing environment variables for ${role} credentials`);
-  }
+  const { username, password } =
+    role === 'admin' ? getCredentials('admin') : getCredentials('regular');
 
   const afishaMainPage = PageFactory.afishaMainPage(page);
   await afishaMainPage.open();
