@@ -1,6 +1,6 @@
 import { type Page, type Locator } from '@playwright/test';
-import { BasePage } from '../BasePage';
-import { Header } from '../fragments/afisha/user/Header';
+import { BasePage } from '../../base/BasePage';
+import { Header } from '../components/afisha/user/Header';
 
 export class AfishaMainPage extends BasePage {
   readonly header: Header;
