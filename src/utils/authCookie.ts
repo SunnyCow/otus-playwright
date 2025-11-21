@@ -6,11 +6,7 @@ const ensureDir = (filePath: string): void => {
   fs.mkdirSync(path.dirname(filePath), { recursive: true });
 };
 
-export async function saveAuthCookie(
-  page: Page,
-  cookieName: string,
-  filePath: string,
-): Promise<void> {
+export async function saveAuthCookie(page: Page, cookieName: string, filePath: string): Promise<void> {
   const cookies = await page.context().cookies();
   const cookie = cookies.find((c) => c.name === cookieName);
 
@@ -25,10 +21,7 @@ export function loadAuthCookieSync(filePath: string): Cookie | null {
   return JSON.parse(fs.readFileSync(filePath, 'utf-8')) as Cookie;
 }
 
-export async function addAuthCookieIfValid(
-  context: BrowserContext,
-  filePath: string,
-): Promise<boolean> {
+export async function addAuthCookieIfValid(context: BrowserContext, filePath: string): Promise<boolean> {
   const cookie = loadAuthCookieSync(filePath);
   if (!cookie) return false;
 
