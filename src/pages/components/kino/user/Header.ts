@@ -1,7 +1,7 @@
-import { Locator, Page } from '@playwright/test';
+import { type Locator, type Page } from '@playwright/test';
 import { PageFactory } from '../../../PageFactory';
 import { type FarpostLoginPage } from '../../../FarpostLoginPage';
-import { BaseHeader } from '../../BaseHeader';
+import { BaseHeader } from '../../../../base/BaseHeader';
 
 export class Header extends BaseHeader {
   readonly searchButton: Locator;
@@ -11,7 +11,7 @@ export class Header extends BaseHeader {
   constructor(page: Page) {
     super(page);
     this.searchButton = page.locator('.header__search-form-toggle');
-    this.loginButton = page.getByRole('link', { name: 'Войти' })
+    this.loginButton = page.getByRole('link', { name: 'Войти' });
     this.userProfile = page.locator('.nav_personal__label');
   }
 

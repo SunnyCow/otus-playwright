@@ -1,6 +1,6 @@
-import { Page } from '@playwright/test';
-import { BasePage } from '../BasePage';
-import { Header } from '../fragments/kino/user/Header';
+import { type Page } from '@playwright/test';
+import { BasePage } from '../../base/BasePage';
+import { Header } from '../components/kino/user/Header';
 
 export class KinoMainPage extends BasePage {
   readonly header: Header;

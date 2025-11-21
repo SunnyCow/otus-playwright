@@ -1,5 +1,5 @@
 import { type Page } from '@playwright/test';
-import { BasePage } from '../BasePage';
+import { BasePage } from '../../base/BasePage';
 import { BasicInfoComponent } from '../components/afisha/user/event-creation/BasicInfoComponent';
 import { PosterComponent } from '../components/afisha/user/event-creation/PosterComponent';
 import { DescriptionComponent } from '../components/afisha/user/event-creation/DescriptionComponent';
