@@ -1,62 +1,43 @@
-import { type Page, type Locator } from '@playwright/test';
+import { type Page } from '@playwright/test';
 import { BasePage } from '../BasePage';
-import { TitleSection } from '../fragments/afisha/user/event-creation/TitleSection';
-import { PosterSection } from '../fragments/afisha/user/event-creation/PosterSection';
-import { DescriptionSection } from '../fragments/afisha/user/event-creation/DescriptionSection';
-import { EventContactsSection } from '../fragments/afisha/user/event-creation/EventContactsSection';
-import { RegistratoinSection } from '../fragments/afisha/user/event-creation/RegistrationSection';
-import { PriceSection } from '../fragments/afisha/user/event-creation/PriceSection';
-import { SchedulesSection } from '../fragments/afisha/user/event-creation/SchedulesSection';
-import { OrgContactsSection } from '../fragments/afisha/user/event-creation/OrgContactsSection';
+import { BasicInfoComponent } from '../components/afisha/user/event-creation/BasicInfoComponent';
+import { PosterComponent } from '../components/afisha/user/event-creation/PosterComponent';
+import { DescriptionComponent } from '../components/afisha/user/event-creation/DescriptionComponent';
+import { EventContactsComponent } from '../components/afisha/user/event-creation/EventContactsComponent';
+import { RegistratoinComponent } from '../components/afisha/user/event-creation/RegistrationComponent';
+import { PriceComponent } from '../components/afisha/user/event-creation/PriceComponent';
+import { SchedulesComponent } from '../components/afisha/user/event-creation/SchedulesComponent';
+import { OrgContactsComponent } from '../components/afisha/user/event-creation/OrgContactsComponent';
+import { MinAgeComponent } from '../components/afisha/user/event-creation/MinAgeComponent';
 
 export class EventCreationPage extends BasePage {
-  public readonly titleCard: Locator;
-  public readonly posterCard: Locator;
-  public readonly descriptionCard: Locator;
-  public readonly contactsCard: Locator;
-  public readonly priceCard: Locator;
-  public readonly ageLimitSelect: Locator;
-  public readonly schedulesCard: Locator;
-  public readonly registrationCard: Locator;
-  public readonly orgContactsCard: Locator;
-  public readonly publishButton: Locator;
-  public readonly titleSection: TitleSection;
-  public readonly posterSection: PosterSection ;
-  public readonly descriptionSection: DescriptionSection;
-  public readonly eventContactsSection: EventContactsSection;
-  public readonly registrationSection: RegistratoinSection;
-  public readonly priceSection: PriceSection;
-  public readonly schedulesSection: SchedulesSection;
-  public readonly orgContactsSection: OrgContactsSection;
+  public readonly basicInfoComponent = new BasicInfoComponent(this.page.locator('form mat-card').first());
+  public readonly posterComponent = new PosterComponent(this.page.locator('#imageFile'));
+  public readonly descriptionComponent = new DescriptionComponent(this.page.locator('#description'));
+  public readonly eventContactsComponent = new EventContactsComponent(this.page.locator('#eventContacts'));
+  public readonly priceComponent = new PriceComponent(
+    this.page.locator('#isFreeControl').locator('xpath=//ancestor::mat-card'),
+  );
+  public readonly minAgeComponent = new MinAgeComponent(this.page.locator('#ageMin'), this.page);
+  public readonly schedulesComponent = new SchedulesComponent(this.page.locator('#schedules'), this.page);
+  public readonly registrationComponent = new RegistratoinComponent(this.page.locator('#checkinRule'));
+  public readonly orgContactsComponent = new OrgContactsComponent(
+    this.page.locator('mat-card', {
+      hasText: 'Возможно, модераторам понадобится связаться с вами',
+    }),
+  );
+  public readonly publishButton = this.page.getByRole('button', { name: 'Отправить на модерацию' });
 
   constructor(page: Page) {
     super(page);
-    this.titleCard = page.locator('form mat-card').first();
-    this.posterCard = page.locator('#imageFile');
-    this.descriptionCard = page.locator('#description');
-    this.contactsCard = page.locator('#eventContacts');
-    this.priceCard = page.locator('#isFreeControl').locator('xpath=//ancestor::mat-card');
-    this.ageLimitSelect = page.getByLabel(/Возрастное ограничение/);
-    this.schedulesCard = page.locator('#schedules');
-    this.registrationCard = page.locator('#checkinRule');
-    this.orgContactsCard = page.locator('mat-card', { hasText: 'Возможно, модераторам понадобится связаться с вами' });
-    this.publishButton = page.getByRole('button', { name: 'Отправить на модерацию' });
-    this.titleSection = new TitleSection(page);
-    this.posterSection = new PosterSection(page);
-    this.descriptionSection = new DescriptionSection(page);
-    this.registrationSection = new RegistratoinSection(this.registrationCard);
-    this.priceSection = new PriceSection(page);
-    this.schedulesSection = new SchedulesSection(page);
-    this.orgContactsSection = new OrgContactsSection(page);
-    this.eventContactsSection = new EventContactsSection(this.contactsCard);
   }
 
-  override async open(): Promise<void> {
+  public override async open(): Promise<void> {
     await this.page.goto('personal/events/create');
   }
 
-  async selectAgeLimit(): Promise<void> {
-    await this.ageLimitSelect.click();
+  public async selectAgeLimit(): Promise<void> {
+    await this.minAgeComponent.minAgeSelect.click();
     await this.page.getByRole('option', { name: '18+' }).click();
   }
 }
