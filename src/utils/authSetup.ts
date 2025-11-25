@@ -7,11 +7,7 @@ interface AuthOptions {
   role: 'user' | 'admin';
 }
 
-export async function ensureAuthenticated(
-  context: BrowserContext,
-  page: Page,
-  { role }: AuthOptions,
-): Promise<void> {
+export async function ensureAuthenticated(context: BrowserContext, page: Page, { role }: AuthOptions): Promise<void> {
   const cookieName = 'eauth';
   const cookieFile = `playwright/.auth/${role}_cookie.json`;
 

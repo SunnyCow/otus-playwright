@@ -1,12 +1,6 @@
-import { Page } from '@playwright/test';
-import { BasePage } from '../BasePage';
-import { Header } from '../fragments/kino/user/Header';
+import { BasePage } from '../../base/BasePage';
+import { KinoHeaderComponent } from './components/KinoHeaderComponent';
 
 export class KinoMainPage extends BasePage {
-  readonly header: Header;
-
-  constructor(page: Page) {
-    super(page);
-    this.header = new Header(page);
-  }
+  public readonly header = new KinoHeaderComponent(this.page.locator('.header'), this.page);
 }

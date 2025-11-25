@@ -1,13 +1,8 @@
-import { type Page, type Locator } from '@playwright/test';
+import { BasePage } from '../base/BasePage';
 
-export class FarpostLoginPage {
-  readonly phoneInput: Locator;
-  readonly passwordInput: Locator;
-
-  constructor(page: Page) {
-    this.phoneInput = page.getByRole('textbox', { name: 'Телефон / Логин' });
-    this.passwordInput = page.getByRole('textbox', { name: 'Пароль' });
-  }
+export class FarpostLoginPage extends BasePage {
+  readonly phoneInput = this.page.getByRole('textbox', { name: 'Телефон / Логин' });
+  readonly passwordInput = this.page.getByRole('textbox', { name: 'Пароль' });
 
   async login(username: string, password: string): Promise<void> {
     await this.phoneInput.fill(username);
