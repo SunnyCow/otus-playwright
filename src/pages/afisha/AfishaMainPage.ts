@@ -1,36 +1,26 @@
-import { type Page, type Locator } from '@playwright/test';
 import { BasePage } from '../../base/BasePage';
-import { Header } from '../components/afisha/user/Header';
+import { AfishaHeaderComponent } from './components/AfishaHeaderComponent';
 
 export class AfishaMainPage extends BasePage {
-  readonly header: Header;
-  readonly eventTitle: Locator;
-  readonly eventFavButton: Locator;
-  readonly userProfileLink?: Locator;
-  readonly carouselEvent: Locator;
+  public readonly header = new AfishaHeaderComponent(this.page.locator('.header'));
+  public readonly eventTitle = this.page.locator('.event-list__item-title > span');
+  public readonly eventFavButton = this.page.locator('.event-list__item-link-favorite').first();
+  public readonly carouselEvent = this.page.locator('.event-list__item-image').first();
 
-  constructor(page: Page) {
-    super(page);
-    this.header = new Header(page);
-    this.eventFavButton = page.locator('.event-list__item-link-favorite').first();
-    this.eventTitle = page.locator('.event-list__item-title > span');
-    this.carouselEvent = page.locator('.event-list__item-image').first();
-  }
-
-  async markEventFav(): Promise<void> {
+  public async markEventFav(): Promise<void> {
     await this.eventFavButton.evaluate((el) => (el as HTMLElement).click());
   }
 
-  async openCarouselEvent(): Promise<void> {
+  public async openCarouselEvent(): Promise<void> {
     await this.carouselEvent.evaluate((element) => (element as HTMLElement).click());
   }
 
-  async isFavoritted(): Promise<boolean> {
+  public async isFavoritted(): Promise<boolean> {
     const classAttr = await this.eventFavButton.getAttribute('class');
     return classAttr?.includes('added') ?? false;
   }
 
-  async getEventTitle(position = 0): Promise<string> {
+  public async getEventTitle(position = 0): Promise<string> {
     const title = await this.eventTitle.nth(position).textContent();
 
     if (!title) {
@@ -40,7 +30,7 @@ export class AfishaMainPage extends BasePage {
     return title.trim();
   }
 
-  cleanEventTitle(dirtyTitle: string): string {
+  public cleanEventTitle(dirtyTitle: string): string {
     return dirtyTitle.replace(/\..*$/, '').replace(/[^a-zA-Z0-9А-Яа-яЁё\s]/g, '');
   }
 }
