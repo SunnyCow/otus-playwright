@@ -5,7 +5,7 @@ export class BasicInfoComponent extends BaseComponent {
   public readonly citySelect = this.root.getByLabel(/Город/);
   public readonly categorySelect = this.root.getByLabel(/Категория/);
 
-  public async fillTitle(value: string): Promise<void> {
+  public async fillTitle(value = `Test - ${Date.now()}`): Promise<void> {
     await this.titleInput.fill(value);
   }
 
@@ -17,5 +17,11 @@ export class BasicInfoComponent extends BaseComponent {
   public async selectCategory(category = 'Вечеринки'): Promise<void> {
     await this.categorySelect.click();
     await this.getPage().getByRole('option', { name: category }).click();
+  }
+
+  public async fillAll(): Promise<void> {
+    await this.fillTitle();
+    await this.selectCity();
+    await this.selectCategory();
   }
 }
