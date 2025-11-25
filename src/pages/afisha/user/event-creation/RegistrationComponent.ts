@@ -1,4 +1,4 @@
-import { BaseComponent } from '../../../../../base/BaseComponent';
+import { BaseComponent } from '../../../../base/BaseComponent';
 
 export class RegistratoinComponent extends BaseComponent {
   public readonly enableAllButton = this.root.getByRole('button', { name: 'Включить все' });

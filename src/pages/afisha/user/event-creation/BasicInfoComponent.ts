@@ -1,4 +1,4 @@
-import { BaseComponent } from '../../../../../base/BaseComponent';
+import { BaseComponent } from '../../../../base/BaseComponent';
 
 export class BasicInfoComponent extends BaseComponent {
   public readonly titleInput = this.root.getByLabel(/Название/);
@@ -11,11 +11,11 @@ export class BasicInfoComponent extends BaseComponent {
 
   public async selectCity(city = 'Владивосток'): Promise<void> {
     await this.citySelect.click();
-    await this.page?.getByRole('option', { name: city }).click();
+    await this.getPage().getByRole('option', { name: city }).click();
   }
 
   public async selectCategory(category = 'Вечеринки'): Promise<void> {
     await this.categorySelect.click();
-    await this.page?.getByRole('option', { name: category }).click();
+    await this.getPage().getByRole('option', { name: category }).click();
   }
 }

@@ -1,14 +1,13 @@
-import { type Page } from '@playwright/test';
-import { BasePage } from '../../base/BasePage';
-import { BasicInfoComponent } from '../components/afisha/user/event-creation/BasicInfoComponent';
-import { PosterComponent } from '../components/afisha/user/event-creation/PosterComponent';
-import { DescriptionComponent } from '../components/afisha/user/event-creation/DescriptionComponent';
-import { EventContactsComponent } from '../components/afisha/user/event-creation/EventContactsComponent';
-import { RegistratoinComponent } from '../components/afisha/user/event-creation/RegistrationComponent';
-import { PriceComponent } from '../components/afisha/user/event-creation/PriceComponent';
-import { SchedulesComponent } from '../components/afisha/user/event-creation/SchedulesComponent';
-import { OrgContactsComponent } from '../components/afisha/user/event-creation/OrgContactsComponent';
-import { MinAgeComponent } from '../components/afisha/user/event-creation/MinAgeComponent';
+import { BasePage } from '../../../../base/BasePage';
+import { BasicInfoComponent } from './BasicInfoComponent';
+import { PosterComponent } from './PosterComponent';
+import { DescriptionComponent } from './DescriptionComponent';
+import { EventContactsComponent } from './EventContactsComponent';
+import { RegistratoinComponent } from './RegistrationComponent';
+import { PriceComponent } from './PriceComponent';
+import { SchedulesComponent } from './SchedulesComponent';
+import { OrgContactsComponent } from './OrgContactsComponent';
+import { MinAgeComponent } from './MinAgeComponent';
 
 export class EventCreationPage extends BasePage {
   public readonly basicInfoComponent = new BasicInfoComponent(this.page.locator('form mat-card').first());
@@ -27,10 +26,6 @@ export class EventCreationPage extends BasePage {
     }),
   );
   public readonly publishButton = this.page.getByRole('button', { name: 'Отправить на модерацию' });
-
-  constructor(page: Page) {
-    super(page);
-  }
 
   public override async open(): Promise<void> {
     await this.page.goto('personal/events/create');
