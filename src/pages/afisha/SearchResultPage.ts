@@ -1,9 +1,5 @@
-import { type Page, type Locator } from '@playwright/test';
+import { BasePage } from '../../base/BasePage';
 
-export class SearchResultPage {
-  readonly currentEvents: Locator;
-
-  constructor(page: Page) {
-    this.currentEvents = page.locator('.event-list__items:not([data-analytics-show="PastEventShow"])');
-  }
+export class SearchResultPage extends BasePage {
+  public readonly currentEvents = this.page.locator('.event-list__items:not([data-analytics-show="PastEventShow"])');
 }
