@@ -1,4 +1,4 @@
-import { BaseComponent } from '../../../../../base/BaseComponent';
+import { BaseComponent } from '../../../../base/BaseComponent';
 
 export class SchedulesComponent extends BaseComponent {
   public readonly venueInput = this.root.getByLabel('Место проведения');

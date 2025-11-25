@@ -1,4 +1,4 @@
-import { BaseComponent } from '../../../../../base/BaseComponent';
+import { BaseComponent } from '../../../../base/BaseComponent';
 
 export class OrgContactsComponent extends BaseComponent {
   public readonly emailInput = this.root.getByLabel('Email');

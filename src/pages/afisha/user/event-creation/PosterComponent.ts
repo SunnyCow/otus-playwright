@@ -1,4 +1,4 @@
-import { BaseComponent } from '../../../../../base/BaseComponent';
+import { BaseComponent } from '../../../../base/BaseComponent';
 
 export class PosterComponent extends BaseComponent {
   public readonly uploadInput = this.root.locator('input[type="file"][hidden]');

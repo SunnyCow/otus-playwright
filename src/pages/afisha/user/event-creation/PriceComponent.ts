@@ -1,4 +1,4 @@
-import { BaseComponent } from '../../../../../base/BaseComponent';
+import { BaseComponent } from '../../../../base/BaseComponent';
 
 export class PriceComponent extends BaseComponent {
   public readonly freeCheckbox = this.root.getByLabel('Бесплатно');

@@ -1,4 +1,4 @@
-import { BaseComponent } from '../../../../../base/BaseComponent';
+import { BaseComponent } from '../../../../base/BaseComponent';
 
 export class EventContactsComponent extends BaseComponent {
   public readonly addContactButton = this.root.getByRole('button', { name: 'Добавить' });
