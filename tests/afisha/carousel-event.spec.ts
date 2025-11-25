@@ -6,5 +6,6 @@ test('opens event page from main page carousel event image', async ({ page }) =>
   await afishaMainPage.open();
 
   await afishaMainPage.openCarouselEvent();
+
   await expect(page).toHaveURL(/event\/\d+/);
 });
