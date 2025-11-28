@@ -10,7 +10,7 @@ import { OrgContactsComponent } from './OrgContactsComponent';
 import { MinAgeComponent } from './MinAgeComponent';
 
 export class EventCreationPage extends BasePage {
-  public readonly basicInfoComponent = new BasicInfoComponent(this.page.locator('form mat-card').first());
+  public readonly basicInfoComponent = new BasicInfoComponent(this.page.locator('form mat-card').first(), this.page);
   public readonly posterComponent = new PosterComponent(this.page.locator('#imageFile'));
   public readonly descriptionComponent = new DescriptionComponent(this.page.locator('#description'));
   public readonly eventContactsComponent = new EventContactsComponent(this.page.locator('#eventContacts'));
@@ -34,5 +34,14 @@ export class EventCreationPage extends BasePage {
   public async selectAgeLimit(): Promise<void> {
     await this.minAgeComponent.minAgeSelect.click();
     await this.page.getByRole('option', { name: '18+' }).click();
+  }
+
+  public async fillAllRequiredFields(): Promise<void> {
+    await this.basicInfoComponent.fillAll();
+    await this.posterComponent.uploadPoster('test-data/images/5.webp');
+    await this.descriptionComponent.fillDescription();
+    await this.minAgeComponent.selectMinAge('18+');
+    await this.schedulesComponent.selectVenue();
+    await this.orgContactsComponent.fillEmail();
   }
 }
